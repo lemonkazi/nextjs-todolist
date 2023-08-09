@@ -11,12 +11,16 @@ function handleComplete(id: number, comp: boolean) {
 
 export default async function ToDos() {
   const todos = await prisma.todo.findMany();
+  console.log("============");
+  console.log(todos);
+  
+  
   const newTodos = todos.map((todo, index) => ({
     index: index,
     id: todo.id,
     title: todo.title,
     body: todo.body,
-    due: todo.due.toDateString(),
+    due: todo.due,
     comp: todo.comp,
   }));
 
