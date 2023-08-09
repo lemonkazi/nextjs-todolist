@@ -3,7 +3,7 @@
 import { useState } from "react";
 import useIsClickOut from "../hooks/OutsideClick";
 
-export default function TodoFormModal({onSubmit, setOpen}: any, open: boolean) {
+export default function TodoFormModal({ onSubmit, setOpen, open }: any) {
 
     const [needDate, setNeedDate] = useState(false);
 
@@ -98,7 +98,7 @@ return !open ? null : (
         <button
           type="submit"
           className="btn mt-2 px-8 mx-1 py-2 px-4 text-base transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg filter hover:brightness-110"
-          onClick={() => onSubmit}
+          onClick={() => onSubmit()}
         >
           Add Item
         </button>

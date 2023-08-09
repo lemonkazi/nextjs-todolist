@@ -91,7 +91,8 @@ const randomTodos: {
       id: todo.id,
       title: todo.title ?? '',
       body: todo.body,
-      due: todo.due.toDateString(),
+      //due: todo.due.toDateString(),
+      due: todo.due,
       comp: todo.comp,
     }));
     return (resolvedTodos);
