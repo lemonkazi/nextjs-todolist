@@ -1,12 +1,12 @@
 import ToDos from "./todos";
 
 
-export const TodoList = () => {
+export const TodoList = ({router}:any) => {
 
   
   return (
     <div>
-        <ToDos />
+        <ToDos router={router}/>
     </div>
   );
 };

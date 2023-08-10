@@ -11,7 +11,7 @@ const [eleCallBack] = useIsClickOut(setOpen)
      
 return !open ? null : (
    <div className="modal" ref={eleCallBack}>
-    <form>
+    <form action={onSubmit}>
       <div className="form-group flex flex-wrap w-full">
         <div
           className="relative mb-3 w-full px-2"
@@ -24,8 +24,8 @@ return !open ? null : (
             <span className="text-red-500 required-dot">*</span>
           </label>
           <input
-            id="titleInput"
-            name="titleInput"
+            id="title"
+            name="title"
             type="text"
             className="rounded-lg border-gray-300 flex-1 appearance-none border border-gray-300 dark:border-gray-600 w-full py-2 px-4 bg-white text-gray-700 dark:bg-notion-dark-light dark:text-gray-300 dark:placeholder-gray-500 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent focus:ring-opacity-100"
             
@@ -37,8 +37,8 @@ return !open ? null : (
             className="text-gray-700 dark:text-gray-300 font-semibold text-sm"
           ></label>
           <textarea
-            id="detailsInput"
-            name="detailsInput"
+            id="details"
+            name="details"
             placeholder="Enter details"
             className="resize-y rounded-lg border-gray-300 flex-1 appearance-none border border-gray-300 dark:border-gray-600 w-full py-2 px-4 bg-white text-gray-700 dark:bg-notion-dark-light dark:text-gray-300 dark:placeholder-gray-500 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent focus:ring-opacity-100"
           ></textarea>
@@ -65,7 +65,7 @@ return !open ? null : (
             Due
             </label>
             <div className="flex">
-                <input id="datePicker" name="datePicker" data-date-format="YYYY-MM-DD" min="2023-07-25" type="date" className="border border-gray-300 dark:bg-notion-dark-light dark:border-gray-600 dark:placeholder-gray-500 dark:text-gray-300 flex-1 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-opacity-100 placeholder-gray-400 px-4 py-2 rounded-lg shadow-sm text-base text-black text-gray-700 w-full" />
+                <input id="datePicker" name="due" data-date-format="YYYY-MM-DD" min="2023-07-25" type="date" className="border border-gray-300 dark:bg-notion-dark-light dark:border-gray-600 dark:placeholder-gray-500 dark:text-gray-300 flex-1 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-opacity-100 placeholder-gray-400 px-4 py-2 rounded-lg shadow-sm text-base text-black text-gray-700 w-full" />
             </div>
                 <small className="text-gray-400 dark:text-gray-500">
                     <span className="field-help">
@@ -76,29 +76,12 @@ return !open ? null : (
                 </small>
             </div>
         </div>
-        <div
-          className="relative mb-3 w-full px-2"
-        >
-          <label
-            htmlFor="tagInput"
-            className="text-gray-700 dark:text-gray-300 font-semibold text-sm"
-          >
-            Tags
-          </label>
-          <input
-            id="tagInput"
-            name="tagInput"
-            placeholder="Enter tags separated by commas"
-            type="text"
-            className="rounded-lg border-gray-300 flex-1 appearance-none border border-gray-300 dark:border-gray-600 w-full py-2 px-4 bg-white text-gray-700 dark:bg-notion-dark-light dark:text-gray-300 dark:placeholder-gray-500 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent focus:ring-opacity-100"
-          />
-        </div>
+        
       </div>
       <div className="flex flex-wrap justify-center w-full">
         <button
           type="submit"
           className="btn mt-2 px-8 mx-1 py-2 px-4 text-base transition ease-in duration-200 text-center font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg filter hover:brightness-110"
-          onClick={() => onSubmit()}
         >
           Add Item
         </button>

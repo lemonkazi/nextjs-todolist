@@ -2,19 +2,25 @@
 
 import { useEffect, useState } from "react"
 import TodoFormModal from "./todoForm";
-
 import { createTodo } from './AddTodo';
 
 
-export default function AddButton() {
+export default function AddButton({router}:any) {
     const [formOpen, setFormOpen] = useState(false);
-    
+    //const router = useRouter();
 
-    const handleAddTodo = async () => {
+    const handleAddTodo = async (data: FormData) => {
+        const title = data.get("title")?.valueOf();
+        if (typeof title !== "string" || title.length === 0) {
+          throw new Error("Invalid Title")
+        }
+        const due = data.get("dueDateCheck")?.valueOf() == 'on' && data.get("due")?.valueOf() ? data.get("due")?.valueOf() : ''; 
+        const details = data.get("details")?.valueOf() ? data.get("details")?.valueOf() : ''; 
         // Call createTodo here with the required parameters
         try {
-            await createTodo("Your Todo Title", "Your Todo Body", '111', false);
-            // Handle success or other logic
+            await createTodo(title, details, due, false);
+            router();
+            //router.push("/"); // Redirect to the desired page
         } catch (error) {
             // Handle error
         }

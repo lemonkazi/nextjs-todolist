@@ -7,10 +7,8 @@ const prisma = new PrismaClient();
 
 
 
-export default async function ToDos() {
+export default async function ToDos({router}:any) {
   const todos = await prisma.todo.findMany();
-  console.log("============");
-  console.log(todos);
   
   
   const newTodos = todos.map((todo, index) => ({
@@ -46,7 +44,7 @@ export default async function ToDos() {
             ))}
           </div>
         </div>
-        <AddButton />
+        <AddButton router={router}/>
       </section>
     </div>
   );
