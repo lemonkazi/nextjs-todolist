@@ -1,13 +1,11 @@
+import React, { useEffect, useState } from 'react';
 import { PrismaClient } from "@prisma/client";
-import { updateComplete } from "./AddTodo";
 import TodoCard from "./TodoCard";
 import AddButton from "./AddTodoButton";
 
 const prisma = new PrismaClient();
 
-function handleComplete(id: number, comp: boolean) {
-  updateComplete(id, comp);
-}
+
 
 export default async function ToDos() {
   const todos = await prisma.todo.findMany();
@@ -37,6 +35,7 @@ export default async function ToDos() {
           <div className="grid grid-cols-4 gap-8 mt-10 sm:grid-cols-8 lg:grid-cols-12 sm:px-8 xl:px-0">
             {newTodos.map((todo) => (
               <TodoCard
+                key={todo.index}
                 index={todo.index}
                 id={todo.id}
                 title={todo.title ? todo.title : ""}

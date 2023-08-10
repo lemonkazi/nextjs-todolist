@@ -2,6 +2,6 @@ export type ToDo = {
     id: number,
     title?: string | null,
     body: string,
-    due: DateTime | null,
+    due: string | null,
     comp: boolean
 }

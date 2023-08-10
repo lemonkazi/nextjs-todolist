@@ -1,19 +1,6 @@
 "use client";
-
-import { GetResult } from "@prisma/client/runtime/library";
+import { useState } from "react";
 import { updateComplete } from "./AddTodo";
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-  PromiseLikeOfReactNode,
-} from "react";
-
-function handleComplete(id: number, comp: boolean) {
-    updateComplete(id, comp);
-  }
-
 export default function TodoCard({
   index,
   id,
@@ -23,15 +10,22 @@ export default function TodoCard({
   comp,
 }: {
   index: number;
-  id: number;
+  id: string;
   title: string;
   body: string;
   due: string;
   comp: boolean;
 }) {
+
+  const [isComplete, setIsComplete] = useState(comp);
+  const handleComplete = async () => {
+    const updatedComp = !isComplete; // Toggle the completion status
+    setIsComplete(updatedComp); // Update the local state
+    await updateComplete(id, isComplete); // Update the completio
+  };
   return (
     <div key={index} className="relative flex flex-col items-center justify-between col-span-4 px-8 py-12 space-y-4 overflow-hidden bg-gray-100 sm:rounded-xl" data-rounded="rounded-xl" data-rounded-max="rounded-full">
-            <h4 className="text-xl font-medium text-gray-700">{title} {comp? " : Complete" : ""}</h4>
+            <h4 className="text-xl font-medium text-gray-700">{title} {isComplete ? " : Complete" : ""}</h4>
             <p className="text-base text-center text-gray-500">{body}</p>
             <small>{due}</small>
             <input
@@ -39,8 +33,8 @@ export default function TodoCard({
               id={index + ": complete"}
               name="completedCheck"
               type="checkbox"
-              checked={comp}
-              onChange={() => handleComplete(index, comp)}
+              checked={isComplete}
+              onChange={handleComplete}
             />
           </div>
   );
